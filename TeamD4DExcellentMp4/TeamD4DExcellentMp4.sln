@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{9E0FB077-7502-4BD8-CCC7-FC3EC0228EC2}") = "TeamD4DExcellentMp4", "Assembly-CSharp.csproj", "{53CC9833-EBEC-68FC-4D16-80A962F80F93}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamD4DExcellentMp4.CSharp", "TeamD4DExcellentMp4.CSharp.csproj", "{CE1070ED-0F31-F789-E64E-695C60D5A68B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{53CC9833-EBEC-68FC-4D16-80A962F80F93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{53CC9833-EBEC-68FC-4D16-80A962F80F93}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{53CC9833-EBEC-68FC-4D16-80A962F80F93}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{53CC9833-EBEC-68FC-4D16-80A962F80F93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE1070ED-0F31-F789-E64E-695C60D5A68B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE1070ED-0F31-F789-E64E-695C60D5A68B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE1070ED-0F31-F789-E64E-695C60D5A68B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE1070ED-0F31-F789-E64E-695C60D5A68B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

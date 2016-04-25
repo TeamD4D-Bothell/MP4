@@ -3,9 +3,8 @@ using System.Collections;
 
 public class House : MonoBehaviour {
 
-	public float minLife = 10;
-	public float maxLife = 30;
-	private float threshold;
+	public float minLife = 15;
+	public float maxLife = 20;
 
 	private float lifeTime;
 	private float currTime;
@@ -18,53 +17,74 @@ public class House : MonoBehaviour {
 		dying,
 		dead
 	}
+	private HOUSE_STATE currState = HOUSE_STATE.dying;
+	public HOUSE_STATE CurrentState { get { return currState; } }
 
-	private HOUSE_STATE currState = HOUSE_STATE.healthy;
-
-	public HOUSE_STATE CurrentState {
-		get { return currState; }
-	}
-
-	// Use this for initialization
+	// START
 	void Start () {
 		animator = GetComponent<Animator>();
-	}
-
-	void OnEnable() {
+		currState = HOUSE_STATE.dying;
 		SetLifespan();
-		currState = HOUSE_STATE.healthy;
 	}
 
-	void Update () {
-		currTime -= Time.deltaTime;
-
-		if (currState == HOUSE_STATE.healthy
-				&& currTime < threshold) {
-			currState = HOUSE_STATE.dying;
-			animator.SetInteger(stateKey, 1);
+	// ON ENABLE
+	void OnEnable() {
+		if(animator != null) {
+			SetState(HOUSE_STATE.dying);
 		}
-		else if (currState == HOUSE_STATE.dying
-				&& currTime <= 0) {
-			currState = HOUSE_STATE.dead;
-			animator.SetInteger(stateKey, 2);
+	}
+
+	// UPDATE
+	void Update () {
+		if (currState == HOUSE_STATE.dying) {
+			currTime -= Time.deltaTime;
+			if (currTime <= 0) {
+				SetState(HOUSE_STATE.dead);
+			}
 		}
 	}
 	
+	// Handles collision with crate
+	// If extended, add check for tag to differentiate between
+	// crate and whatever other obstacle
 	void OnTriggerEnter2D(Collider2D other) {
-		Debug.Log("Crate Delivered");
-		Debug.Log(currState);
-		Debug.Log(currTime);
-
 		if (currState == HOUSE_STATE.dying) {
-			animator.SetInteger(stateKey, 0);
-			currState = HOUSE_STATE.healthy;
-			SetLifespan();
+			SetState(HOUSE_STATE.healthy);
+		}
+	}
+	
+	
+	// SET STATE
+	private void SetState(HOUSE_STATE state) {
+		switch (state)
+		{
+			case HOUSE_STATE.healthy:
+				currState = HOUSE_STATE.healthy;
+				animator.SetInteger(stateKey, 0);
+				break;
+			case HOUSE_STATE.dying:
+				currState = HOUSE_STATE.dying;
+				animator.SetInteger(stateKey, 1);
+				SetLifespan();
+				break;
+			case HOUSE_STATE.dead:
+				currState = HOUSE_STATE.dead;
+				animator.SetInteger(stateKey, 2);
+				break;
+			default:
+				break;
 		}
 	}
 
 	private void SetLifespan() {
 		lifeTime = Random.Range(minLife, maxLife);
 		currTime = lifeTime;
-		threshold = lifeTime / 2;
+	}
+
+	public void BringDown() {
+		if (currState == HOUSE_STATE.dying) {
+			currTime = 0;
+			SetState(HOUSE_STATE.dead);
+		}
 	}
 }
