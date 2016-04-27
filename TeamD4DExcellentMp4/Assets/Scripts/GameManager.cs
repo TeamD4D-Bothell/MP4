@@ -87,7 +87,9 @@ public class GameManager : MonoBehaviour {
 
 	// UPDATE
 	void Update () {
-		if (Input.GetButtonUp("Cancel"))
+
+
+        if (Input.GetButtonUp("Cancel"))
 			Application.Quit();
 
 		switch (currState) {
