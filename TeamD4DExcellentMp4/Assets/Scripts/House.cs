@@ -20,9 +20,14 @@ public class House : MonoBehaviour {
 	private HOUSE_STATE currState = HOUSE_STATE.dying;
 	public HOUSE_STATE CurrentState { get { return currState; } }
 
+    private AudioClip collapseSound;
+    private AudioClip repairSound;
+
 	// START
 	void Start () {
 		animator = GetComponent<Animator>();
+        collapseSound = Resources.Load("Sounds/CollapseSound") as AudioClip;
+        repairSound = Resources.Load("Sounds/WrenchSound") as AudioClip;
 		currState = HOUSE_STATE.dying;
 		SetLifespan();
 	}
@@ -50,6 +55,7 @@ public class House : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other) {
 		if (currState == HOUSE_STATE.dying) {
 			SetState(HOUSE_STATE.healthy);
+            AudioSource.PlayClipAtPoint(repairSound, transform.position);
 		}
 	}
 	
@@ -70,6 +76,7 @@ public class House : MonoBehaviour {
 			case HOUSE_STATE.dead:
 				currState = HOUSE_STATE.dead;
 				animator.SetInteger(stateKey, 2);
+                AudioSource.PlayClipAtPoint(collapseSound, transform.position, .2f);
 				break;
 			default:
 				break;
