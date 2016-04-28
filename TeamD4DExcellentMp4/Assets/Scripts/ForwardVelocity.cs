@@ -23,6 +23,8 @@ public class ForwardVelocity : MonoBehaviour {
 			if (velocity < minVelocity)
 				velocity = minVelocity;
 		}
-		transform.position += transform.up * velocity * Time.deltaTime;
-	}
+        /*    if (transform.position.x < 0) transform.position += -1 * ((transform.up * velocity * Time.deltaTime) / 2);
+            transform.position += transform.up * velocity * Time.deltaTime; */
+        transform.position += transform.up * velocity * Time.deltaTime;
+    }
 }
