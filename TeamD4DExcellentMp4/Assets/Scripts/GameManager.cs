@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
 	private List<House> houses;
 	public int listSize = 10;
 	public string nextLevel = "";
+    
 
 	private float top, bottom, right, left;
 	public float margin = 0.25f;
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour {
 
 	// Awake
 	void Awake() {
+        
 		Vector3 topRight = Camera.main.ScreenToWorldPoint(
 			new Vector3(Screen.width, Screen.height, 0));
 		Vector3 bottomLeft = Camera.main.ScreenToWorldPoint(
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour {
 	// UPDATE
 	void Update () {
 
-
+       
         if (Input.GetButtonUp("Cancel"))
 			Application.Quit();
 
